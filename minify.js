@@ -28,7 +28,6 @@ function minifyScript() {
 
         const bookmarkletCode = `javascript:(function(){${minifiedCode}})();`;
 
-        console.log("Minified bookmarklet code:");
         console.log(bookmarkletCode);
     });
 }
