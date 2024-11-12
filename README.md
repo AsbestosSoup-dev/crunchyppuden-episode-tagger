@@ -63,7 +63,7 @@ This will:
 
 _Note_: You can stop the server after the episode data has been fetched by pressing `Ctrl+C`.
 
-### 4. Create the Bookmarklet (optional)
+### 4. Create the Bookmarklet (or paste `crunchyroll_injection.js` into browser console)
 
 To use the episode tagging feature, create a bookmarklet with the following steps:
 
