@@ -1,0 +1,12 @@
+{
+  "name": "crunchyppuden_episode_tagger",
+  "version": "1.0.0",
+  "description": "Naruto Shippuden episode tagger project",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jsdom": "^25.0.1"
+  }
+}
