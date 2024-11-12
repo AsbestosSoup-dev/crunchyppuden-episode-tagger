@@ -1,6 +1,14 @@
 const {exec} = require('child_process');
 require('fs');
 
+const isDebug = process.env.DEBUG === 'true';
+
+function logDebug(message) {
+    if (isDebug) {
+        console.log(message);
+    }
+}
+
 function minifyScript() {
     const inputFile = process.argv[2];
     if (!inputFile) {
@@ -8,7 +16,7 @@ function minifyScript() {
         process.exit(1);
     }
 
-    console.log("Debug: Starting minification process.");
+    logDebug("Debug: Starting minification process.");
 
     exec(`terser ${inputFile} -c -m`, (minifyError, minifiedCode) => {
         if (minifyError) {
@@ -16,7 +24,7 @@ function minifyScript() {
             process.exit(1);
         }
 
-        console.log("Debug: Minification successful. Preparing bookmarklet.");
+        logDebug("Debug: Minification successful. Preparing bookmarklet.");
 
         const bookmarkletCode = `javascript:(function(){${minifiedCode}})();`;
 
@@ -25,9 +33,9 @@ function minifyScript() {
     });
 }
 
-console.log("Debug: Checking if terser is installed.");
+logDebug("Debug: Checking if terser is installed.");
 
-exec('terser -v', (error) => {
+exec('terser --version', (error) => {
     if (error) {
         console.log("Terser is not installed. Installing...");
         exec('npm install terser -g', (installError) => {
@@ -39,7 +47,7 @@ exec('terser -v', (error) => {
             minifyScript();
         });
     } else {
-        console.log("Terser is already installed.");
+        logDebug("Terser is already installed.");
         minifyScript();
     }
 });
