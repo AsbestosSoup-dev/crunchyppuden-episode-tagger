@@ -10,7 +10,8 @@ A project that dynamically tags Naruto Shippuden episodes on Crunchyroll with th
     * [1. Clone the Repository](#1-clone-the-repository)
     * [2. Install Python Dependencies](#2-install-python-dependencies)
     * [3. Run the Python Script to Generate `episodes.json`](#3-run-the-python-script-to-generate-episodesjson)
-    * [4. Create the Bookmarklet (optional)](#4-create-the-bookmarklet-optional)
+    * [4. Using the Script Without Bookmarklet (Optional)](#4-using-the-script-without-bookmarklet-optional)
+    * [5. Create the Bookmarklet (Optional)](#5-create-the-bookmarklet-optional)
   * [Usage](#usage)
     * [Running the Python Script](#running-the-python-script)
     * [Using the Bookmarklet](#using-the-bookmarklet)
@@ -19,7 +20,10 @@ A project that dynamically tags Naruto Shippuden episodes on Crunchyroll with th
   * [Troubleshooting](#troubleshooting)
   * [License](#license)
 
+---
+
 ## Description
+
 This project enables Crunchyroll users to see the type of each Naruto Shippuden episode (e.g., Canon, Filler) directly on the episode's page. It fetches episode data from a locally hosted `episodes.json` file, which is created by scraping data from a filler guide website.
 
 The JavaScript bookmarklet dynamically updates the episode title and adds an episode type tag, allowing users to identify whether an episode is Canon, Mixed Canon/Filler, or Filler at a glance.
@@ -27,48 +31,59 @@ The JavaScript bookmarklet dynamically updates the episode title and adds an epi
 ## Requirements
 
 - **Python 3.x**
-- **Flask** and **Flask-CORS**: To serve the JSON data with CORS enabled.
+- **Flask**, **Flask-CORS**, **Requests**, **BeautifulSoup4**: To serve the JSON data with CORS enabled, handling http requests, and web-scrapping.
 - **JavaScript-enabled browser**: Chrome, Firefox, Edge, etc.
+- **Node.js (for optional minification)**: Required for running the `minify.js` script.
 
 ## Setup
 
 ### 1. Clone the Repository
+Clone the repository to your local machine:
 ```bash
 git clone https://github.com/AsbestosSoup-dev/crunchyppuden-episode-tagger.git
 cd crunchyppuden-episode-tagger
 ```
 
 ### 2. Install Python Dependencies
-Make sure to set up a virtual environment:
+Set up a virtual environment and install necessary packages:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+python3 -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scriptsctivate`
 ```
 
-Install Flask, Flask-CORS, Requests, BeautifulSoup4:
+Install Flask, Flask-CORS, Requests, and BeautifulSoup4:
 ```bash
 pip install flask flask-cors requests beautifulsoup4
 ```
 
 ### 3. Run the Python Script to Generate `episodes.json`
-The Python script will scrape episode information and create `episodes.json`.
+The Python script scrapes episode information and creates `episodes.json` to store the data locally.
 
 ```bash
-python main.py
+python3 main.py
 ```
 
-This will:
+This script will:
 - Scrape episode type data from an online filler guide.
 - Start a local Flask server at `http://localhost:8000` to serve `episodes.json`.
 
-_Note_: You can stop the server after the episode data has been fetched by pressing `Ctrl+C`.
+_Note_: You can stop the server by pressing `Ctrl+C` after the episode data has been fetched.
 
-### 4. Create the Bookmarklet (or paste `crunchyroll_injection.js` into browser console)
+### 4. Using the Script Without Bookmarklet (Optional)
 
-To use the episode tagging feature, create a bookmarklet with the following steps:
+If you don’t want to create a bookmarklet, you can simply copy the code in `crunchyroll_injection.js` and paste it directly into the browser console while on the Naruto Shippuden episode page. This is suitable for non-persistent, temporary usage.
 
-1. **Minify the `crunchyroll_injection.js` script** (see [Minifying the Bookmarklet Script](#minifying-the-bookmarklet-script) below).
-2. Create a new bookmark in your browser, name it something like "Naruto Episode Tagger," and paste the minified JavaScript code into the URL field.
+1. Open a Naruto Shippuden episode on Crunchyroll.
+2. Open the Developer Console (`F12` or `Cmd+Option+J`).
+3. Paste the entire code from `crunchyroll_injection.js` and press Enter.
+4. This will tag the current episode with its type (Canon, Filler, etc.).
+
+### 5. Create the Bookmarklet (Optional)
+
+For a more permanent, easy to access solution, create a bookmarklet:
+
+1. **Minify the `crunchyroll_injection.js` script** (see [Minifying the Bookmarklet Script](#minifying-the-bookmarklet-script)).
+2. Create a new bookmark in your browser, name it "Naruto Episode Tagger," and paste the minified JavaScript code into the URL field.
 
 ## Usage
 
@@ -76,9 +91,9 @@ To use the episode tagging feature, create a bookmarklet with the following step
 
 1. Start the local server by running the Python script:
    ```bash
-   python main.py
+   python3 main.py
    ```
-   - This will generate the `episodes.json` file and serve it at `http://localhost:8000/episodes.json`.
+   - This generates the `episodes.json` file and serves it at `http://localhost:8000/episodes.json`.
 
 2. The server will continue to run, listening for requests from the bookmarklet. You can stop the server if you don’t need it running continuously after loading `episodes.json`.
 
@@ -92,29 +107,34 @@ To use the episode tagging feature, create a bookmarklet with the following step
 
 ### Minifying the Bookmarklet Script
 
-For ease of use, a helper script is provided to minify `crunchyroll_injection.js`. This script, `minify.js`, takes a JavaScript file as input, removes unnecessary spaces and line breaks, and outputs a minified version with a `javascript:` prefix for easy bookmarking.
+To make the `crunchyroll_injection.js` file more compact for bookmarklet use, a helper script, `minify.js`, is provided.
 
-**Usage:**
-
-1. Run the following command to minify it:
+1. **Install Node.js**: If you haven't, [download Node.js here](https://nodejs.org/en/) and follow the instructions for your operating system.
+2. Run the following command to minify:
    ```bash
-   node minify.js crunchyroll_injection.js   # Note: for help installing Node, check [the Node.org site](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs)
+   node minify.js crunchyroll_injection.js
    ```
-2. Copy the minified output from the console and paste it into a new bookmark.
+3. Copy the minified output from the console, which will be prefixed with `javascript:`. This code is ready to paste into a new bookmark.
+
+   Example of minified output:
+   ```javascript
+   javascript:(async function(){...})();
+   ```
 
 ## Optional Customizations
 
-1. **Episode Colors**: Update the colors in the `typeColors` dictionary in the JavaScript code to match your preference.
-2. **Generate Minified JavaScript**: After customizing, use `minify.js` to quickly minify and update your bookmarklet.
+1. **Episode Colors**: Update the colors in the `typeColors` dictionary in `crunchyroll_injection.js` to match your preference.
+2. **Generate Updated Minified JavaScript**: After customizing the JavaScript code, use `minify.js` to quickly minify it for the bookmarklet.
 
 ## Troubleshooting
 
-- **CORS Errors**: Make sure `main.py` uses Flask with CORS enabled to allow the JavaScript bookmarklet to access `episodes.json`.
-- **No Episode Tag**: If no tag appears, ensure the script correctly finds the episode number. Use the Developer Console (`F12` or `Cmd+Option+J`) to check for debug logs.
-- **The Script Doesn’t Persist**: The bookmarklet needs to be clicked each time you navigate to a new episode. (fixed!)
+- **CORS Errors**: Ensure `main.py` uses Flask with CORS enabled to allow the JavaScript bookmarklet to access `episodes.json`.
+- **No Episode Tag**: If no tag appears, make sure the script correctly identifies the episode number. Use the Developer Console (`F12` or `Cmd+Option+J`) to check for debug logs.
+- **Script Doesn’t Persist**: The bookmarklet needs to be clicked each time you navigate to a new episode. (This has been addressed in recent updates to the script.)
 
 ---
 
 ## License
 MIT License. Free to use and modify.
 
+---
