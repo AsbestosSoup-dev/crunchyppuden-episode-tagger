@@ -45,9 +45,9 @@ python -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 ```
 
-Install Flask and Flask-CORS:
+Install Flask, Flask-CORS, Requests, BeautifulSoup4:
 ```bash
-pip install flask flask-cors
+pip install flask flask-cors requests beautifulsoup4
 ```
 
 ### 3. Run the Python Script to Generate `episodes.json`
