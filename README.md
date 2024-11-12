@@ -83,7 +83,7 @@ If you don’t want to create a bookmarklet, you can simply copy the code in `cr
 For a more permanent, easy to access solution, create a bookmarklet:
 
 1. **Minify the `crunchyroll_injection.js` script** (see [Minifying the Bookmarklet Script](#minifying-the-bookmarklet-script)).
-2. Create a new bookmark in your browser, name it "Naruto Episode Tagger," and paste the minified JavaScript code into the URL field.
+2. Create a new bookmark in your browser, name it "Naruto Shippuden Episode Tagger," and paste the minified JavaScript code into the URL field.
 
 ## Usage
 
@@ -100,7 +100,7 @@ For a more permanent, easy to access solution, create a bookmarklet:
 ### Using the Bookmarklet
 
 1. Open a Naruto Shippuden episode on Crunchyroll.
-2. Click on the "Naruto Episode Tagger" bookmark.
+2. Click on the "Naruto Shippuden Episode Tagger" bookmark.
 3. The bookmarklet will:
    - Fetch `episodes.json` from the local server.
    - Add the episode type (Canon, Filler, etc.) to the page title and next to the episode title.
