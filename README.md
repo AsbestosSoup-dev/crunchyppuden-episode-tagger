@@ -96,12 +96,11 @@ For ease of use, a helper script is provided to minify `crunchyroll_injection.js
 
 **Usage:**
 
-1. Place `crunchyroll_injection.js` in the project folder.
-2. Run the following command to minify it:
+1. Run the following command to minify it:
    ```bash
    node minify.js crunchyroll_injection.js   # Note: for help installing Node, check [the Node.org site](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs)
    ```
-3. Copy the minified output from the console and paste it into a new bookmark.
+2. Copy the minified output from the console and paste it into a new bookmark.
 
 ## Optional Customizations
 
