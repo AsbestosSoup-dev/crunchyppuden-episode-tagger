@@ -32,7 +32,7 @@ The JavaScript bookmarklet dynamically updates the episode title and adds an epi
 
 - **Python 3.x**
 - **Flask**, **Flask-CORS**, **Requests**, **BeautifulSoup4**: To serve the JSON data with CORS enabled, handling http requests, and web-scrapping.
-- **JavaScript-enabled browser**: Chrome, Firefox, Edge, etc.
+- **Google Chrome**: JavaScript enabled browser
 - **Node.js (for optional minification)**: Required for running the `minify.js` script.
 
 ## Setup
