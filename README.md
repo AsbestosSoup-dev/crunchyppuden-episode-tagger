@@ -34,8 +34,8 @@ The JavaScript bookmarklet dynamically updates the episode title and adds an epi
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/naruto-episode-tagger.git
-cd naruto-episode-tagger
+git clone https://github.com/AsbestosSoup-dev/crunchyppuden-episode-tagger.git
+cd crunchyppuden-episode-tagger
 ```
 
 ### 2. Install Python Dependencies
