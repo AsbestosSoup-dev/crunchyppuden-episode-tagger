@@ -17,7 +17,7 @@ def parse_episode_range(range_str: str) -> list[int]:
 
 
 def scrape_tags():
-    url = "https://www.animefillerlist.com/shows/naruto"
+    url = "https://www.animefillerlist.com/shows/naruto-shippuden"
 
     try:
         response = requests.get(url)
